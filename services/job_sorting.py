@@ -1,16 +1,11 @@
-from models.job_description import DeskripsiPekerjaan
-from models.profile import ProfilFreshGraduate
 from services.job_scoring import hitung_skor_kecocokan_pekerjaan
 
 
 def merge_sort_pekerjaan(
-    pekerjaan_list: list[DeskripsiPekerjaan],
-    profil: ProfilFreshGraduate,
+    pekerjaan_list: list[dict],
+    profil: dict,
     preferensi: str = "skor_keseluruhan",
 ):
-    """
-    Mengurutkan daftar pekerjaan berdasarkan preferensi pengguna menggunakan merge sort.
-    """
     if len(pekerjaan_list) <= 1:
         return pekerjaan_list
 
@@ -22,14 +17,11 @@ def merge_sort_pekerjaan(
 
 
 def merge(
-    left: list[DeskripsiPekerjaan],
-    right: list[DeskripsiPekerjaan],
-    profil: ProfilFreshGraduate,
+    left: list[dict],
+    right: list[dict],
+    profil: dict,
     preferensi: str,
 ):
-    """
-    Menggabungkan dua sublist berdasarkan preferensi pengguna.
-    """
     sorted_list = []
     while left and right:
         left_score = hitung_skor_kecocokan_pekerjaan(profil, left[0])[preferensi]
