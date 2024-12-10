@@ -23,7 +23,6 @@ def hitung_kecocokan_angka(angka_harapan, angka_pembanding, toleransi=1.0):
 
 from difflib import SequenceMatcher as SM
 
-
 def hitung_skor_kecocokan_pekerjaan(profil_fresh_graduate, deskripsi_pekerjaan):
     skor_kecocokan = {
         "skor_jurusan": 0,
@@ -53,7 +52,7 @@ def hitung_skor_kecocokan_pekerjaan(profil_fresh_graduate, deskripsi_pekerjaan):
         deskripsi_pekerjaan["persyaratan_pengalaman"],
         profil_fresh_graduate["pengalaman_kerja"],
     )
-    skor_kecocokan["skor_keseluruhan"] += skor_kecocokan["skor_pengalaman_kerja"] * 0.15
+    skor_kecocokan["skor_keseluruhan"] += skor_kecocokan["skor_pengalaman_kerja"] * 0.25
 
     # Skor keterampilan
     keterampilan_sesuai = set(profil_fresh_graduate["keterampilan"]) & set(
@@ -62,7 +61,7 @@ def hitung_skor_kecocokan_pekerjaan(profil_fresh_graduate, deskripsi_pekerjaan):
     skor_kecocokan["skor_keterampilan"] = len(keterampilan_sesuai) / len(
         deskripsi_pekerjaan["keterampilan_dibutuhkan"]
     )
-    skor_kecocokan["skor_keseluruhan"] += (0.20 * len(keterampilan_sesuai)) / len(
+    skor_kecocokan["skor_keseluruhan"] += (0.3 * len(keterampilan_sesuai)) / len(
         deskripsi_pekerjaan["keterampilan_dibutuhkan"]
     )
 
@@ -70,7 +69,7 @@ def hitung_skor_kecocokan_pekerjaan(profil_fresh_graduate, deskripsi_pekerjaan):
     skor_kecocokan["skor_gaji"] = hitung_kecocokan_angka(
         profil_fresh_graduate["harapan_gaji"], deskripsi_pekerjaan["gaji"], 1000000
     )
-    skor_kecocokan["skor_keseluruhan"] += skor_kecocokan["skor_gaji"] * 0.10
+    skor_kecocokan["skor_keseluruhan"] += skor_kecocokan["skor_gaji"] * 0.1
 
     deskripsi_pekerjaan["skor_kecocokan"] = skor_kecocokan
     return skor_kecocokan
