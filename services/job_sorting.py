@@ -1,4 +1,4 @@
-from services.job_scoring import hitung_skor_kecocokan_pekerjaan
+from controller import scoring_controller
 
 
 def merge_sort_pekerjaan(
@@ -24,8 +24,8 @@ def merge(
 ):
     sorted_list = []
     while left and right:
-        left_score = hitung_skor_kecocokan_pekerjaan(profil, left[0])[preferensi]
-        right_score = hitung_skor_kecocokan_pekerjaan(profil, right[0])[preferensi]
+        left_score = scoring_controller.scoring(profil, left[0])[preferensi]
+        right_score = scoring_controller.scoring(profil, right[0])[preferensi]
 
         if left_score >= right_score:  # Descending order (highest score first)
             sorted_list.append(left.pop(0))
